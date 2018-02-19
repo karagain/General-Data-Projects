@@ -1,10 +1,10 @@
 # Public-Data-Projects
 This repository contains projects related to the Data Analysis workflow.     
 
-These projects demonstrate my progressive ability to use Python, R, SQL, and others.
-Python Packages used: Scikit learn, Pandas, Numpy, matplotlib, json...
-R Packages used: dplyr, ggplot, qplot, tidyr, knitr, and RColorBrewer
-Projects are in descending chronological order. (Newest at the top)
+These projects demonstrate my progressive ability to use Python, R, SQL, and others.    
+Python Packages used: Scikit learn, Pandas, Numpy, matplotlib, json...    
+R Packages used: dplyr, ggplot, qplot, tidyr, knitr, and RColorBrewer    
+Projects are in descending chronological order. (Newest at the top)    
 
 Omitted Projects are listed at the bottom can be made available upon request. 
 
