@@ -12,6 +12,7 @@ load('ex3data1.mat'); % training data stored in arrays X, y
 m = size(X, 1);
 
 % Function that creates theta for each classification label.
+% The theta is calculated usin gfmincg which 
 function [all_theta] = oneVsAll(X, y, num_labels, lambda)
 m = size(X, 1);
 n = size(X, 2);
@@ -21,29 +22,27 @@ options = optimset('GradObj', 'on', 'MaxIter', 50);
 
 for c = 1:num_labels
     [theta, cost] = ...
-    fmincg(@(t)(lrCostFunction(t, X, (y == c), lambda)), initial_theta, options);
+    fmincg(@(t)(lrCostFunction(t, X, (y == c), lambda)), initial_theta, options); 
+    % Carl Edward Rasmussen's function to calculate a minimum in a continuous differentiable function
+    % The function to be minimized is a logistic function with regularization. 
+    % An alternative would be fminuc which finds the minimum of an unconstrained function, does the similar job but may 
+    % not get to as good of a minimum due to the the regularization in the function. 
     all_theta(c, :) = theta;
 end
 
 lambda = 0.1;
 [all_theta] = oneVsAll(X, y, num_labels, lambda);
 
-% Function
-function p = predict(Theta1, Theta2, X)
+% Function to calculate 
+function p = predictOneVsAll(all_theta, X)
 m = size(X, 1);
-num_labels = size(Theta2, 1);
+num_labels = size(all_theta, 1);
 p = zeros(size(X, 1), 1);
-
-% Matrix Multiplication to calculate the activation of each node for the input to hidden layer
 X = [ones(m, 1) X];
-B = sigmoid(X * Theta1');
-% Hidden layer to output
-B = [ones(m, 1) B];
-C = sigmoid(B * Theta2');
+% Matrix Multiplication to calculate the activation of each class. Return position most activated class.
+p = sigmoid(X * all_theta');
+[max_values indices] = max(p, [], 2);
 
-% The output matrix that has the highest activation is exported as the indices which represent the classification. 
-% In this scenario, the 10th indices represents 0, and the remaining indices represent the actual number. 
-[max_values indices] = max(C, [], 2);
 p = indices;
 end
 
