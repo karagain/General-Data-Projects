@@ -1,4 +1,6 @@
-%% NN Classification One-vs-all
+%% Classification One-vs-all
+% This shows the vectorized form of implementing logistic regression to classify the digits.
+% The accuracy is about 95%
 
 
 %% Setup the parameters you will use for this part of the exercise
